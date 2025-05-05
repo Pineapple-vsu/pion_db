@@ -53,6 +53,18 @@ class RecommendationController {
       res.status(500).json({ error: error.message });
     }
   }
+  async getRecommendationByFlowerId(req, res) {
+    try {
+      const recommendation =
+        await recommendationService.getRecommendationByFlowerId(req.params.id);
+      if (!recommendation)
+        return res.status(404).json({ error: "Рекомендации не найдены" });
+
+      res.json({ description: recommendation.description });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = new RecommendationController();

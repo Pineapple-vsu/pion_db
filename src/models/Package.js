@@ -9,8 +9,16 @@ const Package = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    material: {
+    name: {
       type: Sequelize.STRING,
+      allowNull: false,
+    },
+    cost: {
+      type: Sequelize.DECIMAL,
+      allowNull: false,
+    },
+    stock_count: {
+      type: Sequelize.INTEGER,
       allowNull: false,
     },
   },

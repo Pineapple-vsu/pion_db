@@ -9,6 +9,10 @@ const Order = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
+    order_data: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
     status_id: {
       type: Sequelize.INTEGER,
       references: { model: "status", key: "id" },
@@ -17,12 +21,20 @@ const Order = sequelize.define(
       type: Sequelize.INTEGER,
       references: { model: "posy", key: "id" },
     },
-    package_id: {
-      type: Sequelize.INTEGER,
-      references: { model: "package", key: "id" },
+    telephone: {
+      type: Sequelize.STRING,
+      allowNull: false,
     },
-    total_price: {
-      type: Sequelize.NUMERIC,
+    name_people: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    delivery: {
+      type: Sequelize.BOOLEAN,
+      allowNull: false,
+    },
+    address: {
+      type: Sequelize.STRING,
       allowNull: false,
     },
   },

@@ -10,7 +10,7 @@ const Recommendation = sequelize.define(
       autoIncrement: true,
     },
     description: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       allowNull: false,
     },
   },

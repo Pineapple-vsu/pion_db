@@ -1,4 +1,5 @@
 const RecommendationRepository = require("../repository/recommendation");
+const FlowerRepository = require("../repository/flower");
 
 class RecommendationService {
   async createRecommendation(recommendation) {
@@ -28,6 +29,9 @@ class RecommendationService {
   //     }
   //     return recommendations;
   //   }
+  async getRecommendationByFlowerId(flowerId) {
+    return await RecommendationRepository.getByFlowerId(flowerId);
+  }
 }
 
 module.exports = new RecommendationService();

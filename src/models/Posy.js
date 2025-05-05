@@ -9,17 +9,23 @@ const Posy = sequelize.define(
       primaryKey: true,
       autoIncrement: true,
     },
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
     flower_id: {
       type: Sequelize.INTEGER,
       references: { model: "flower", key: "id" },
     },
-    price: {
-      type: Sequelize.NUMERIC,
+    //кол-во
+    count: {
+      type: Sequelize.INTEGER,
       allowNull: false,
+    },
+    //стоимость
+    cost: {
+      type: Sequelize.DECIMAL,
+      allowNull: false,
+    },
+    package_id: {
+      type: Sequelize.INTEGER,
+      allowNull: true,
     },
   },
   {

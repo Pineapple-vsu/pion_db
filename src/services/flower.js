@@ -35,6 +35,12 @@ class FlowerService {
   async findByName(name) {
     return await FlowerRepository.findByName(name);
   }
+  async getFlowerTypeName(flowerId) {
+    return await FlowerRepository.getFlowerTypeNameById(flowerId);
+  }
+  async getFlowersByTypeName(typeName) {
+    return await FlowerRepository.getFlowersByTypeName(typeName);
+  }
 }
 
 module.exports = new FlowerService();

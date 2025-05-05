@@ -120,6 +120,43 @@ class FlowerController {
       res.status(500).json({ error: error.message });
     }
   }
+  async getFlowerRecommendation(req, res) {
+    try {
+      const { name } = req.params;
+      const flowers = await flowerService.findByName(name);
+
+      const updatedFlowers = flowers.map((flower) => ({
+        ...flower.dataValues,
+        img: `http://localhost:3000/${flower.img}`,
+      }));
+      res.json(updatedFlowers);
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+  async getFlowerTypeName(req, res) {
+    try {
+      const typeName = await flowerService.getFlowerTypeName(req.params.id);
+      if (!typeName)
+        return res.status(404).json({ error: "Тип цветка не найден" });
+
+      res.json({ type_name: typeName });
+    } catch (error) {
+      res.status(500).json({ error: error.message });
+    }
+  }
+  async getFlowersByTypeName(req, res) {
+    try {
+      const flowers = await flowerService.getFlowersByTypeName(req.params.name);
+      if (!flowers.length)
+        return res.status(404).json({ error: "Цветы данного типа не найдены" });
+
+      res.json(flowers);
+    } catch (error) {
+      console.error("Ошибка при поиске цветов по типу:", error);
+      res.status(500).json({ error: error.message });
+    }
+  }
 }
 
 module.exports = new FlowerController();

@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-const Flower = require("../models/Flower");
+const { Flower, FlowerType } = require("../models");
 
 class FlowerRepository {
   async create(flower) {
@@ -44,7 +44,7 @@ class FlowerRepository {
     return await Flower.findAll({
       where: {
         stock_count: {
-          [Op.gt]: minStock,
+          [Op.gte]: minStock,
         },
       },
       order: [["stock_count", "DESC"]],
@@ -58,6 +58,23 @@ class FlowerRepository {
           [Op.iLike]: `%${flowerName}%`, // без учёта регистра
         },
       },
+    });
+  }
+
+  async getFlowerTypeNameById(flowerId) {
+    return await Flower.findOne({
+      where: { id: flowerId },
+      include: [{ model: FlowerType, attributes: ["name"] }],
+    });
+  }
+  async getFlowersByTypeName(name) {
+    return await Flower.findAll({
+      include: [
+        {
+          model: FlowerType,
+          where: { name: name },
+        },
+      ],
     });
   }
 }

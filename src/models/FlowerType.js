@@ -15,7 +15,6 @@ const FlowerType = sequelize.define(
     },
     recommendation_id: {
       type: Sequelize.INTEGER,
-      allowNull: true,
       references: {
         model: "recommendation",
         key: "id",

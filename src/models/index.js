@@ -15,8 +15,11 @@ Flower.belongsTo(FlowerType, { foreignKey: "flower_type_id" });
 Flower.hasMany(Posy, { foreignKey: "flower_id" });
 Posy.belongsTo(Flower, { foreignKey: "flower_id" });
 
-Package.hasMany(Order, { foreignKey: "package_id" });
-Order.belongsTo(Package, { foreignKey: "package_id" });
+// Package.hasMany(Order, { foreignKey: "package_id" });
+// Order.belongsTo(Package, { foreignKey: "package_id" });
+
+Package.hasMany(Posy, { foreignKey: "package_id" });
+Posy.belongsTo(Package, { foreignKey: "package_id" });
 
 Status.hasMany(Order, { foreignKey: "status_id" });
 Order.belongsTo(Status, { foreignKey: "status_id" });

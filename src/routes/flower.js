@@ -14,4 +14,8 @@ router.get("/search/:name", FlowerController.getFlowersByName);
 
 router.get("/stock/:minStock", FlowerController.getFlowersByStock);
 
+router.get("/:id/type_name", FlowerController.getFlowerTypeName);
+
+router.get("/type_name/:name", FlowerController.getFlowersByTypeName);
+
 module.exports = router;

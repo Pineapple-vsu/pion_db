@@ -1,5 +1,7 @@
 const { Op } = require("sequelize");
 const Recommendation = require("../models/Recommendation");
+const Flower = require("../models/Flower");
+const FlowerType = require("../models/FlowerType");
 
 class RecommendationRepository {
   async create(recommendation) {
@@ -30,6 +32,16 @@ class RecommendationRepository {
   //       },
   //     });
   //   }
+
+  async getByFlowerId(flowerId) {
+    const flower = await Flower.findByPk(flowerId);
+    if (!flower) return null;
+
+    const flowerType = await FlowerType.findByPk(flower.flower_type_id);
+    if (!flowerType) return null;
+
+    return await Recommendation.findByPk(flowerType.recommendation_id);
+  }
 }
 
 module.exports = new RecommendationRepository();
