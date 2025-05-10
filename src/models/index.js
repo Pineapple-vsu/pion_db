@@ -15,8 +15,9 @@ Flower.belongsTo(FlowerType, { foreignKey: "flower_type_id" });
 Flower.hasMany(Posy, { foreignKey: "flower_id" });
 Posy.belongsTo(Flower, { foreignKey: "flower_id" });
 
-// Package.hasMany(Order, { foreignKey: "package_id" });
-// Order.belongsTo(Package, { foreignKey: "package_id" });
+// Связь FlowerType ↔ Recommendation
+FlowerType.belongsTo(Recommendation, { foreignKey: "recommendation_id" });
+Recommendation.hasMany(FlowerType, { foreignKey: "recommendation_id" });
 
 Package.hasMany(Posy, { foreignKey: "package_id" });
 Posy.belongsTo(Package, { foreignKey: "package_id" });
@@ -26,9 +27,6 @@ Order.belongsTo(Status, { foreignKey: "status_id" });
 
 Posy.hasMany(Order, { foreignKey: "posy_id" });
 Order.belongsTo(Posy, { foreignKey: "posy_id" });
-
-Recommendation.belongsTo(FlowerType, { foreignKey: "flower_type_id" });
-FlowerType.hasMany(Recommendation, { foreignKey: "flower_type_id" });
 
 module.exports = {
   sequelize,

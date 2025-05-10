@@ -25,22 +25,21 @@ class RecommendationRepository {
     return await Recommendation.findAll();
   }
 
-  //   async findByDescription(description) {
-  //     return await Recommendation.findAll({
-  //       where: {
-  //         description: { [Op.like]: `%${description}%` },
-  //       },
-  //     });
-  //   }
-
-  async getByFlowerId(flowerId) {
+  async getRecommendationDescriptionByFlowerId(flowerId) {
     const flower = await Flower.findByPk(flowerId);
     if (!flower) return null;
 
+    // Получаем FlowerType через flower_type_id
     const flowerType = await FlowerType.findByPk(flower.flower_type_id);
     if (!flowerType) return null;
 
-    return await Recommendation.findByPk(flowerType.recommendation_id);
+    // Получаем Recommendation через recommendation_id
+    const recommendation = await Recommendation.findByPk(
+      flowerType.recommendation_id
+    );
+    if (!recommendation) return null;
+
+    return recommendation.description;
   }
 }
 

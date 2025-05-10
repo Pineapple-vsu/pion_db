@@ -1,5 +1,4 @@
 const RecommendationRepository = require("../repository/recommendation");
-const FlowerRepository = require("../repository/flower");
 
 class RecommendationService {
   async createRecommendation(recommendation) {
@@ -22,15 +21,11 @@ class RecommendationService {
   async getAllRecommendations() {
     return await RecommendationRepository.list();
   }
-  //   async getRecommendationsByDescription(description) {
-  //     const recommendations = await RecommendationRepository.findByDescription(description);
-  //     if (recommendations.length === 0) {
-  //       throw new Error("No recommendations found");
-  //     }
-  //     return recommendations;
-  //   }
-  async getRecommendationByFlowerId(flowerId) {
-    return await RecommendationRepository.getByFlowerId(flowerId);
+
+  async getRecommendationDescriptionByFlowerId(flowerId) {
+    return await RecommendationRepository.getRecommendationDescriptionByFlowerId(
+      flowerId
+    );
   }
 }
 

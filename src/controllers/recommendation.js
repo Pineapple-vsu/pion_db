@@ -53,14 +53,16 @@ class RecommendationController {
       res.status(500).json({ error: error.message });
     }
   }
-  async getRecommendationByFlowerId(req, res) {
+  async getRecommendationDescriptionByFlowerId(req, res) {
     try {
-      const recommendation =
-        await recommendationService.getRecommendationByFlowerId(req.params.id);
-      if (!recommendation)
-        return res.status(404).json({ error: "Рекомендации не найдены" });
+      const description =
+        await recommendationService.getRecommendationDescriptionByFlowerId(
+          req.params.id
+        );
+      if (!description)
+        return res.status(404).json({ error: "Рекомендация не найдена" });
 
-      res.json({ description: recommendation.description });
+      res.json({ description });
     } catch (error) {
       res.status(500).json({ error: error.message });
     }

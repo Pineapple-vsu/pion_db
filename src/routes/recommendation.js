@@ -8,6 +8,9 @@ router.get("/:id", RecommendationController.getRecommendationById);
 router.put("/:id", RecommendationController.updateRecommendation);
 router.delete("/:id", RecommendationController.deleteRecommendation);
 
-router.get("/flower/:id", RecommendationController.getRecommendationByFlowerId);
+router.get(
+  "/flower/:id",
+  RecommendationController.getRecommendationDescriptionByFlowerId
+);
 
 module.exports = router;
